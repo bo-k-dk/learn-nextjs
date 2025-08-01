@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-interface iappProps {
+export interface iappProps {
   data: {
     id: string;
     title: string;

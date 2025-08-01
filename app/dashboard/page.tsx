@@ -3,9 +3,9 @@ import Link from "next/link";
 import { prisma } from "../utils/db";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { BlogPostCard } from "@/components/general/BlogPostCard";
-import type { BlogPost } from "@prisma/client";
+import { BlogPost } from "@prisma/client";
 
-async function getData(userId: string): Promise<BlogPost[]> {
+async function getData({ userId }: { userId: string }): Promise<BlogPost[]> {
   const data = await prisma.blogPost.findMany({
     where: {
       auther_id: userId,
@@ -22,7 +22,7 @@ export default async function DashboardRoute() {
   const { getUser } = getKindeServerSession();
   const user = await getUser();
 
-  const data = await getData(user?.id as string);
+  const data = await getData({ userId: user?.id as string });
 
   return (
     <div>
