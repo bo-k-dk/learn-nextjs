@@ -53,7 +53,13 @@ export function BlogPostCard({ data }: iappProps) {
             </div>
 
             <time className="text-xs text-gray-500">
-              {data.created_at.toDateString()}
+              {new Intl.DateTimeFormat("da-DK", {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+                hour: "numeric",
+                minute: "numeric",
+              }).format(data.created_at)}
             </time>
           </div>
         </div>
